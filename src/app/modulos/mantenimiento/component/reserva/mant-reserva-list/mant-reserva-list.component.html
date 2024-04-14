@@ -1,0 +1,113 @@
+<div class="container-fluid px-4 mt-5">
+    <div class="card bg-light mb-3">
+        <div class="card-header text-center" >
+            <h1 class="mt-4">ATENCION DE SERVICIOS</h1>
+        </div>
+        <div class="card-body">
+            <form [formGroup]="myFormFilter">
+
+                <div class="card bg-light mb-3">
+                <div class="card-header">Busqueda</div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-3">
+                                <div class="form-group">
+                                    <label for="">Fecha Reserva</label>
+                                    <input formControlName="fechaReserva" type="date" class="form-control">
+                                </div>
+                            </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label for="">Servicio</label>
+                                <input formControlName="nombreServicio" type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label for=""></label>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <br>
+                            <div class="form-group">
+                                <button (click)="filtrar()" class="btn btn-primary btn-sm">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                                <button class="btn btn-danger btn-sm">
+                                    <i class="fas fa-broom"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+
+            </form>
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre Usuario</th>
+                        <th>Nombre Servicio</th>
+                        <th>Fecha</th>
+                        <th>Hora </th>
+                        <th>Precio</th>
+                        <th>Medio Pago</th>
+                        <th>Estado</th>
+                        <th>
+                            <button (click)="crearReserva(modalEdit)" class="btn btn-primary btn-sm">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </th> 
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let reserva of vReservas">
+                        <td>{{reserva.idReserva}}</td>
+                        <td>{{reserva.username}}</td>
+                        <td>{{reserva.nombreServicio}}</td>
+                        <td>{{reserva.fechaReserva | date:"dd/MM/YYYY"}}</td>
+                        <td>{{reserva.horaReserva}}</td>
+                        <td>{{reserva.precio}}</td>
+                        <td>{{reserva.nombreMedioPago}}</td>
+                        <td>{{reserva.estado}}</td>
+                        <td>
+                            <button (click)="editarReserva(modalEdit,reserva)" class="btn btn-primary btn-sm">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button (click)="eliminarRegistro(reserva.idReserva)" class="btn btn-danger btn-sm">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="row">
+              <pagination (pageChanged)="changePage($event)" [totalItems]="totalItems"
+                        [itemsPerPage]="itemsPerPage" [previousText]="'Anterior'" [nextText]="'Siguiente'">
+                    </pagination>
+
+                <div class="col-xs-4 col-4">
+                    <select (change)="changeItemsPerPage()" [(ngModel)]="itemsPerPage" class="form-select">
+                        <option value="1">1</option>
+                        <option value="5">5</option>
+                        <option value="7">7</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<ng-template #modalEdit>
+  <app-mant-reserva-register
+  [title]="titleModal"
+  [reserva]="reservaSelected"
+  [tiposServicio]="tiposDeServicios"
+  [Usuarios]="Usuarios"
+  [mediosDepago]="mediosDepago"
+  [accion]="accionModal"
+  (closeModalEmmit)="getCloseModalEmmit($event)"
+  ></app-mant-reserva-register>
+</ng-template>

@@ -1,0 +1,84 @@
+<div class="modal-header">
+    <h4 class="modal-title pull-left">{{title}}</h4>
+    <!-- (click)="modalRef?.hide()" -->
+    <button type="button" class="btn-close close pull-right" aria-label="Close"  >
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="myForm">
+        <div class="row">
+            <div class="col-12 mt-3">
+                <div class="form-group">
+                    <label for="">ID</label>
+                    <input formControlName="idReserva" type="text" class="form-control" placeholder="Ingrese el Identificador">
+                </div>
+            </div>
+             <!-- <div class="col-12 mt-3">
+                <div class="form-group">
+                    <label for="">IDUsuario</label>
+                    <input formControlName="idUsuario" type="text" class="form-control" placeholder="Ingrese el Identificador">
+                </div>
+            </div> --> 
+            <div class="col-12 mt-3">
+                <div class="form-group">
+                    <label for="">Usuario</label>
+                    <select class="form-select" formControlName="idUsuario">
+                        <option  *ngFor="let u of usuarios" value="{{u.idUsuario}}">{{u.username}}</option>
+                    </select>
+                    <!-- <input formControlName="idServicio" type="text" class="form-control" placeholder="Ingrese el Identificador"> -->
+                </div>
+            </div>
+             <div class="col-12 mt-3">
+                <div class="form-group">
+                    <label for="">IDServicio</label>
+                    <select class="form-select"  formControlName="idServicio" >
+                        <option  *ngFor="let d of servicio" value="{{d.idServicio}}">{{d.nombreServicio}}</option>
+                    </select>
+                    <!-- <input formControlName="idServicio" type="text" class="form-control" placeholder="Ingrese el Identificador"> -->
+                </div>
+            </div>
+             <div class="col-12 mt-3">
+                <div class="form-group">
+                    <label for="">IDMedioPago</label>
+                   <select class="form-select"  formControlName="idMedioPago">
+                        <option  *ngFor="let m of medioPago" value="{{m.idMedioPago}}">{{m.nombreMedioPago}}</option>
+                    </select>
+                    <!-- <input formControlName="idMedioPago" type="text" class="form-control" placeholder="Ingrese el Identificador"> -->
+                </div>
+            </div>
+            <div class="col-12 mt-3">
+                <div class="form-group">
+                    <label for="">Fecha de Reserva</label>
+                    <input formControlName="fechaReserva" type="date" class="form-control" placeholder="Ingrese la fecha de Reserva">
+                </div> 
+                <div *ngIf="myForm.get('fechaReserva')?.errors && myForm.touched">
+                    <small class="text-danger" *ngIf="myForm.get('fechaReserva')?.hasError('required')">Campo requerido</small>
+                    <!-- <span class="text-danger" *ngIf="myForm.get('nombreCargo')?.hasError('email')">No cumple con el formato de correo</span> -->
+                </div>
+            </div>
+
+            <div class="col-12 mt-3">
+                <div class="form-group">
+                    <label for="">Hora de Reserva</label>
+                    <input formControlName="horaReserva" type="time" class="form-control" placeholder="Ingrese la hora de Reserva">
+                </div> 
+                <div *ngIf="myForm.get('horaReserva')?.errors && myForm.touched">
+                    <small class="text-danger" *ngIf="myForm.get('horaReserva')?.hasError('required')">Campo requerido</small>
+                    <!-- <span class="text-danger" *ngIf="myForm.get('nombreCargo')?.hasError('email')">No cumple con el formato de correo</span> -->
+                </div>
+            </div>
+
+            <div class="col-6 mt-3" >
+                <div class="d-grid gap-2">
+                    <button [disabled]="myForm.invalid" (click)="guardar()" class=" btn-block btn  btn-primary btn-sm">GUARDAR</button>
+                </div>
+            </div>
+            <div class="col-6 mt-3" >
+                <div class="d-grid gap-2">
+                    <button class="btn-block btn btn-danger btn-sm">CANCELAR</button>
+                </div>
+            </div>
+        </div>
+    </form>
+  </div>

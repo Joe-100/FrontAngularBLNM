@@ -1,0 +1,54 @@
+<div class="container-fluid px-4 mt-5">
+    <div class="card bg-light mb-3">
+        <div class="card-header text-center" >
+            <h1 class="mt-4">MANTENIMIENTO DE PERSONAS</h1>
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>NOMBRE</th>
+                        <th>AP.Paterno</th>
+                        <th>AP.Materno</th>
+                        <th>IDTipoDocumento</th>
+                        <th>N° DE DOCUMENTO</th>
+                        <th>
+                            <button (click)="crearPersona(modalEdit)" class="btn btn-primary btn-sm">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </th> 
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let persona of personas">
+                        <td>{{persona.idPersona}}</td>
+                        <td>{{persona.nombrePersona}}</td>
+                        <td>{{persona.apPaternoPersona}}</td>
+                        <td>{{persona.apMaternoPersona}}</td>
+                        <td>{{persona.idTipoDocumento}}</td>
+                        <td>{{persona.numeroDocumento}}</td>
+                        <td>
+                            <button (click)="editarPersona(modalEdit,persona)" class="btn btn-primary btn-sm">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button (click)="eliminarRegistro(persona.idPersona)" class="btn btn-danger btn-sm">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<ng-template #modalEdit>
+  <app-mant-persona-register
+  [title]="titleModal"
+  [persona]="personaSelected"
+  [accion]="accionModal"
+  (closeModalEmmit)="getCloseModalEmmit($event)"
+  ></app-mant-persona-register>
+</ng-template>

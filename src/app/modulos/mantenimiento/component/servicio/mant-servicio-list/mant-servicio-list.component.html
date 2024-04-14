@@ -1,0 +1,54 @@
+<div class="container-fluid px-4 mt-5">
+    <div class="card bg-light mb-3">
+        <div class="card-header text-center" >
+            <h1 class="mt-4">MANTENIMIENTO DE SERVICIOS</h1>
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>NOMBRE</th>
+                        <th>DESCRIPCION</th>
+                        <th>PRECIO</th>
+                        <th>Imagen</th>
+                        <th>
+                            <button (click)="crearServicio(modalEdit)" class="btn btn-primary btn-sm">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </th> 
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let servicio of servicios">
+                        <td>{{servicio.idServicio}}</td>
+                        <td>{{servicio.nombreServicio}}</td>
+                        <td>{{servicio.descripcionServicio}}</td>
+                        <td>{{servicio.precio}}</td>
+                        <td>
+                             <img src="{{servicio.linkImagen}}"  width="100" />
+                        </td>
+                        <td>
+                            <button (click)="editarServicio(modalEdit,servicio)" class="btn btn-primary btn-sm">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button (click)="eliminarRegistro(servicio.idServicio)" class="btn btn-danger btn-sm">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<ng-template #modalEdit>
+  <app-mant-servicio-register
+  [title]="titleModal"
+  [servicio]="servicioSelected"
+  [accion]="accionModal"
+  (closeModalEmmit)="getCloseModalEmmit($event)"
+  ></app-mant-servicio-register>
+</ng-template>

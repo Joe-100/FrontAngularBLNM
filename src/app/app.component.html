@@ -1,0 +1,52 @@
+<!-- <h1>LOGIN</h1>
+
+<br>
+<label for="">USUARIO: </label> 
+<input type="text" [(ngModel)]="usuario">
+<br><br>
+<label for="">PASSWORD: </label> 
+<input type="text" [(ngModel)]="password">
+
+
+<br><br>
+<button (click)="iniciarSesion()">
+  INICIAR SESION
+</button>
+<br>
+<br>
+<label for="">ID </label> <input type="text" [(ngModel)]="cargoRequest.id"> <br> <br>
+<label for="">NOMBRE </label> <input type="text" [(ngModel)]="cargoRequest.nombre"> <br>
+
+<label for=""></label> <input type="text"> <br>
+<label for=""></label> <input type="text"> <br>
+
+
+
+<br><br><br><br>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>
+                  <button (click)="crearCargo()">AGREGAR</button>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let cargo of cargos">
+                <td>{{ cargo.id }}</td>
+                <td>{{ cargo.nombre }}</td>
+                <td>
+                  <button (click)="rellenarValores(cargo)" style="background-color: cadetblue;">ACTUALIZAR</button>
+                  <button (click)="eliminarRegistro(cargo.id)" style="background-color: darkred;">ELIMINAR</button>
+                </td>
+              </tr>
+            </tbody>
+
+
+
+
+          </table> -->
+
+<router-outlet></router-outlet> 

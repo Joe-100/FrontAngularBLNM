@@ -1,0 +1,52 @@
+<div class="container-fluid px-4 mt-5">
+    <div class="card bg-light mb-3">
+        <div class="card-header text-center" >
+            <h1 class="mt-4">MANTENIMIENTO DE CARGOS</h1>
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>IDPersona</th>
+                        <th>IDRol</th>
+                        <th>username</th>
+                        <!-- <th>password</th> -->
+                        <th>
+                            <button (click)="crearUsuario(modalEdit)" class="btn btn-primary btn-sm">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </th> 
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let usuario of usuarios">
+                        <td>{{usuario.idUsuario}}</td>
+                        <td>{{usuario.idPersona}}</td>
+                        <td>{{usuario.idRol}}</td>
+                        <td>{{usuario.username}}</td>
+                        <!-- <td>{{usuario.password}}</td> -->
+                        <td>
+                            <button (click)="editarUsuario(modalEdit,usuario)" class="btn btn-primary btn-sm">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button (click)="eliminarRegistro(usuario.idUsuario)" class="btn btn-danger btn-sm">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<ng-template #modalEdit>
+  <app-mant-usuario-register
+  [title]="titleModal"
+  [usuario]="usuarioSelected"
+  [accion]="accionModal"
+  (closeModalEmmit)="getCloseModalEmmit($event)"
+  ></app-mant-usuario-register>
+</ng-template>

@@ -1,0 +1,27 @@
+<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+  <div class="col-md-4 mb-3" *ngFor="let servicio of servicios">
+    <div class="card">
+      <!-- Product image-->
+      <img class="card-img-top" src="{{servicio.linkImagen}}"   />
+      <!-- Product details-->
+      <div class="card-body">
+        <!-- Product name-->
+        <h5 class="card-title">{{servicio.nombreServicio}}</h5>
+        <!-- Product price-->
+        <p class="card-text">S/.{{servicio.precio}}</p>
+        <!-- Product actions-->
+        <button class="btn btn-outline-dark" (click)="crearServicio(modalEdit)">SELECCIONAR</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<ng-template #modalEdit>
+  <app-datos-reserva
+  [title]="titleModal"
+  [servicios]="serviciosSelected"
+  [accion]="accionModal"
+  (closeModalEmmit)="getCloseModalEmmit($event)"
+  ></app-datos-reserva>
+</ng-template>
